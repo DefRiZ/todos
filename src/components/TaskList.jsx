@@ -1,21 +1,10 @@
 import React from "react";
+
+import { useFilter } from "../hooks/useFilter";
 import { TaskItem } from "./TaskItem";
 
-export const TaskList = ({ list, handleDelete, toogleCompleted }) => {
-  const [filter, setFilter] = React.useState("all");
-  const [sort, setSort] = React.useState("createdAt");
-
-  const filteredList = list.filter((task) => {
-    if (filter === "completed") return task.completed;
-    if (filter === "uncompleted") return !task.completed;
-    return true;
-  });
-
-  const sortedList = filteredList.sort((a, b) => {
-    if (sort === "createdAt") return b.createdAt - a.createdAt;
-    if (sort === "priority") return b.priority - a.priority;
-    return 0;
-  });
+export const TaskList = ({ list, onClickDelete, onClickToogleComplete }) => {
+  const { filter, sort, setFilter, setSort, sortedList } = useFilter(list);
   return (
     <div>
       <div className="flex justify-between mb-4">
@@ -48,8 +37,8 @@ export const TaskList = ({ list, handleDelete, toogleCompleted }) => {
           <TaskItem
             key={item.id}
             item={item}
-            handleDelete={handleDelete}
-            toogleCompleted={toogleCompleted}
+            onClickDelete={onClickDelete}
+            onClickToogleComplete={onClickToogleComplete}
           />
         ))}
       </ul>

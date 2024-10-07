@@ -1,14 +1,14 @@
 import React from "react";
 
 export const TaskForm = ({
-  handleSubmit,
+  onClickAdd,
   value,
   setValue,
   priority,
   setPriority,
 }) => {
   return (
-    <form onSubmit={handleSubmit} className="mb-4">
+    <form onSubmit={onClickAdd} className="mb-4">
       <div className="flex items-center space-x-2">
         <input
           type="text"

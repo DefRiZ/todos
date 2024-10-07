@@ -1,6 +1,6 @@
 import React from "react";
 
-export const TaskItem = ({ item, handleDelete, toogleCompleted }) => {
+export const TaskItem = ({ item, onClickDelete, onClickToogleComplete }) => {
   return (
     <li
       key={item.id}
@@ -9,7 +9,7 @@ export const TaskItem = ({ item, handleDelete, toogleCompleted }) => {
       }`}
     >
       <span
-        onClick={() => toogleCompleted(item.id)}
+        onClick={() => onClickToogleComplete(item.id)}
         className={`flex-grow cursor-pointer ${
           item.completed ? "line-through text-gray-400" : ""
         }`}
@@ -18,7 +18,7 @@ export const TaskItem = ({ item, handleDelete, toogleCompleted }) => {
       </span>
       <button
         className="ml-4 bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600"
-        onClick={() => handleDelete(item.id)}
+        onClick={() => onClickDelete(item.id)}
       >
         Delete
       </button>
