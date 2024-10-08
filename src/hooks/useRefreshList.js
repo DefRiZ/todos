@@ -1,7 +1,8 @@
 import React from "react";
+import { useLocalStorage } from "./useLocalStorage";
 
 export const useRefreshList = () => {
-  const [list, setList] = React.useState([]);
+  const [list, setList] = useLocalStorage("list", []);
   const [value, setValue] = React.useState("");
   const [priority, setPriority] = React.useState("low");
 
