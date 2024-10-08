@@ -1,19 +1,20 @@
 import React from "react";
 
-import { useList } from "./hooks/useList";
+import { useRefreshList } from "./hooks/useRefreshList";
 import { TaskForm } from "./components/TaskForm";
 import { TaskList } from "./components/TaskList";
 
 function App() {
-  const [value, setValue] = React.useState("");
-  const [priority, setPriority] = React.useState("low");
-
-  const { list, onClickAdd, onClickDelete, onClickToogleComplete } = useList({
+  const {
+    list,
     value,
     setValue,
     priority,
     setPriority,
-  });
+    onClickAdd,
+    onClickDelete,
+    onClickToogleComplete,
+  } = useRefreshList();
 
   return (
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">

@@ -1,10 +1,13 @@
 import React from "react";
 
-export const useList = ({ value, setValue, priority, setPriority }) => {
+export const useRefreshList = () => {
   const [list, setList] = React.useState([]);
+  const [value, setValue] = React.useState("");
+  const [priority, setPriority] = React.useState("low");
 
   function onClickAdd(e) {
     e.preventDefault();
+    if (value.trim() === "") return;
     setList([
       ...list,
       {
@@ -17,8 +20,6 @@ export const useList = ({ value, setValue, priority, setPriority }) => {
     ]);
     setValue("");
     setPriority("low");
-
-    console.log(list);
   }
 
   function onClickDelete(id) {
@@ -35,6 +36,10 @@ export const useList = ({ value, setValue, priority, setPriority }) => {
 
   return {
     list,
+    value,
+    priority,
+    setValue,
+    setPriority,
     onClickAdd,
     onClickDelete,
     onClickToogleComplete,
