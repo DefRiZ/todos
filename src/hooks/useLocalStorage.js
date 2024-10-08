@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export function useLocalStorage(key, initialValue) {
   const [storedValue, setStoredValue] = useState(() => {
@@ -11,13 +11,10 @@ export function useLocalStorage(key, initialValue) {
     }
   });
 
-  // Обновление значения и запись в localStorage
   const setValue = (value) => {
     try {
-      const valueToStore =
-        value instanceof Function ? value(storedValue) : value;
-      setStoredValue(valueToStore);
-      localStorage.setItem(key, JSON.stringify(valueToStore));
+      setStoredValue(value);
+      localStorage.setItem(key, JSON.stringify(value));
     } catch (error) {
       console.warn("Error setting localStorage:", error);
     }

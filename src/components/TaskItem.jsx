@@ -1,8 +1,13 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 export const TaskItem = ({ item, onClickDelete, onClickToogleComplete }) => {
   return (
-    <li
+    <motion.li
+      layout
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
       key={item.id}
       className={`flex justify-between items-center p-3 border rounded-md ${
         item.completed ? "bg-green-100" : "bg-white"
@@ -22,6 +27,6 @@ export const TaskItem = ({ item, onClickDelete, onClickToogleComplete }) => {
       >
         Delete
       </button>
-    </li>
+    </motion.li>
   );
 };

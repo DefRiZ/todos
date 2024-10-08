@@ -1,5 +1,5 @@
 import React from "react";
-
+import { AnimatePresence, motion } from "framer-motion";
 import { useFilter } from "../hooks/useFilter";
 import { TaskItem } from "./TaskItem";
 
@@ -32,16 +32,18 @@ export const TaskList = ({ list, onClickDelete, onClickToogleComplete }) => {
           </select>
         </div>
       </div>
-      <ul className="space-y-2">
-        {sortedList.map((item) => (
-          <TaskItem
-            key={item.id}
-            item={item}
-            onClickDelete={onClickDelete}
-            onClickToogleComplete={onClickToogleComplete}
-          />
-        ))}
-      </ul>
+      <motion.ul className="space-y-2">
+        <AnimatePresence>
+          {sortedList.map((item) => (
+            <TaskItem
+              key={item.id}
+              item={item}
+              onClickDelete={onClickDelete}
+              onClickToogleComplete={onClickToogleComplete}
+            />
+          ))}
+        </AnimatePresence>
+      </motion.ul>
     </div>
   );
 };
